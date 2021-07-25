@@ -11,6 +11,9 @@ import CoreLocation
 class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
+    
+    @Published var restaurants = [Business]()
+    @Published var sights = [Business]()
     override init() {
         // init NSObject
         super.init()
@@ -50,8 +53,8 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             
             // if we have the coordinates of the user send into Yelp API
-            getBusinesses(category: "arts", location: userLocation!)
-            getBusinesses(category: "restaurants", location: userLocation!)
+            getBusinesses(category: Constants.sightsKey, location: userLocation!)
+            getBusinesses(category: Constants.restaurantsKey, location: userLocation!)
             
         }
     
@@ -66,7 +69,7 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         let url = URL(string: urlString)
         */
         
-        var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")
+        var urlComponents = URLComponents(string: Constants.apiURL)
         
         urlComponents?.queryItems = [
             URLQueryItem(name: "latitude", value: String(location.coordinate.latitude)),
@@ -79,7 +82,7 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             // Create URL request
             var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
             request.httpMethod = "GET"
-            request.addValue("Bearer segIl1bCQO3uR47I4-lREky8TGU1kKowqwqaTEuWXoJCdzo9ylSv79NwGbAIxxEQJhArlT5iplspaRW25b5cUk_Uarrl43c6pfHuDi-1Cot8HKPFMRXS7ktW2L79YHYx", forHTTPHeaderField: "Authorization")
+            request.addValue("Bearer \(Constants.apiKey)", forHTTPHeaderField: "Authorization")
             
             // get URLSession
             let session = URLSession.shared
@@ -88,7 +91,26 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                 
                 // Check that there isn't an error
                 if error == nil {
-                    print(response)
+                    // Parse JSON
+                    let decoder = JSONDecoder()
+                    
+                    do {
+                        let result = try decoder.decode(BusinessSearch.self, from: data!)
+                        // Assign results to appropriate property
+                        DispatchQueue.main.async {
+                            switch category {
+                            case Constants.sightsKey:
+                                self.sights = result.businesses
+                            case Constants.restaurantsKey:
+                                self.restaurants = result.businesses
+                            default:
+                                break
+                            }
+                        }
+                    }
+                    catch {
+                        print(error)
+                    }
                 }
                 
             }
