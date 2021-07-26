@@ -36,6 +36,8 @@ struct BusinessMap: UIViewRepresentable {
         
         let mapView = MKMapView()
         
+        mapView.delegate = context.coordinator
+        
         // Make user show up on map
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .followWithHeading
@@ -55,5 +57,39 @@ struct BusinessMap: UIViewRepresentable {
         
         uiView.removeAnnotations(uiView.annotations)
         
+    }
+    // MARK: -Coordinator class
+    func makeCoordinator() -> Coordinator {
+        return Coordinator()
+    }
+    class Coordinator: NSObject, MKMapViewDelegate {
+        
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            
+            // If the annotation is the user dot return nil
+            if annotation is MKUserLocation {
+                return nil
+            }
+            
+            // Check if there's a reusable annotation view first
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationReuseId)
+            
+            if annotationView == nil {
+                // Create a new one
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: Constants.annotationReuseId)
+                
+                annotationView!.canShowCallout = true
+                annotationView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            }
+            else {
+                // We got a reusable one
+                annotationView!.annotation = annotation
+            }
+            // Return it
+            return annotationView
+            
+            
+            
+        }
     }
 }
