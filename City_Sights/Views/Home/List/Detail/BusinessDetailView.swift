@@ -50,6 +50,7 @@ struct BusinessDetailView: View {
                 
                 // Business rating
                 Image("regular_\(business.rating ?? 0)")
+                    .padding()
                 Divider()
                 // Phone
                 HStack {
