@@ -35,15 +35,32 @@ struct HomeView: View {
                     .navigationBarHidden(true)
                 }
                 else {
-                    //show map
-                    BusinessMap(selectedBusiness: $selectedBusiness)
-                        .ignoresSafeArea()
-                        .sheet(item: $selectedBusiness) { business in
-                            
-                            // Create business detail view instance
-                            // Pass in business
-                            BusinessDetailView(business: business)
-                        }
+                    ZStack (alignment: .top){
+                        //show map
+                        BusinessMap(selectedBusiness: $selectedBusiness)
+                            .ignoresSafeArea()
+                            .sheet(item: $selectedBusiness) { business in
+                                
+                                // Create business detail view instance
+                                // Pass in business
+                                BusinessDetailView(business: business)
+                            }
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
+                                .frame(height: 48)
+                            HStack {
+                                Image(systemName: "location")
+                                Text("San Francisco")
+                                Spacer()
+                                Button("Switch to list view") {
+                                    self.isMapShowing = false
+                                }
+                            }.padding()
+                        }.padding()
+                    }
+                    
                 }
             }
             
