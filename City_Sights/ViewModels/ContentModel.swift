@@ -68,11 +68,6 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     func getBusinesses(category: String, location: CLLocation) {
         
         // Create URL
-        /*
-        let urlString = "https://api.yelp.com/v3/businesses/search?latitude=\(location.coordinate.latitude)&longitude=\(location.coordinate.longitude)&categories=\(category)&limit=6"
-        
-        let url = URL(string: urlString)
-        */
         
         var urlComponents = URLComponents(string: Constants.apiURL)
         
@@ -101,13 +96,23 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                     
                     do {
                         let result = try decoder.decode(BusinessSearch.self, from: data!)
-                        // Assign results to appropriate property
+                        
+                        // Sort businesses
+                        var businesses = result.businesses
+                        businesses.sort { (b1, b2) -> Bool in
+                            return b1.distance ?? 0 < b2.distance ?? 0
+                        }
+                        // Call the get image function of the businesses
+                        for b in result.businesses {
+                            b.getImageData()
+                        }
                         DispatchQueue.main.async {
+                            // Assign results to appropriate property
                             switch category {
                             case Constants.sightsKey:
-                                self.sights = result.businesses
+                                self.sights = businesses
                             case Constants.restaurantsKey:
-                                self.restaurants = result.businesses
+                                self.restaurants = businesses
                             default:
                                 break
                             }
