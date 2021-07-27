@@ -22,6 +22,11 @@
 		02C1FE6626AE34D9006F439E /* BusinessRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1FE6526AE34D9006F439E /* BusinessRow.swift */; };
 		02C1FE6B26AF081A006F439E /* BusinessDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1FE6A26AF081A006F439E /* BusinessDetailView.swift */; };
 		02C1FE6F26AF2ECA006F439E /* BusinessMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1FE6E26AF2ECA006F439E /* BusinessMap.swift */; };
+		02C1FE7126AF5FEB006F439E /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1FE7026AF5FEB006F439E /* DirectionsView.swift */; };
+		02C1FE7326AF607C006F439E /* BusinessTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1FE7226AF607C006F439E /* BusinessTitleView.swift */; };
+		02C1FE7526AF71DB006F439E /* DirectionsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1FE7426AF71DB006F439E /* DirectionsMap.swift */; };
+		02C1FE7726B065D8006F439E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1FE7626B065D8006F439E /* OnboardingView.swift */; };
+		02C1FE7926B06F84006F439E /* LocationDeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1FE7826B06F84006F439E /* LocationDeniedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +47,11 @@
 		02C1FE6526AE34D9006F439E /* BusinessRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessRow.swift; sourceTree = "<group>"; };
 		02C1FE6A26AF081A006F439E /* BusinessDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailView.swift; sourceTree = "<group>"; };
 		02C1FE6E26AF2ECA006F439E /* BusinessMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessMap.swift; sourceTree = "<group>"; };
+		02C1FE7026AF5FEB006F439E /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
+		02C1FE7226AF607C006F439E /* BusinessTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessTitleView.swift; sourceTree = "<group>"; };
+		02C1FE7426AF71DB006F439E /* DirectionsMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsMap.swift; sourceTree = "<group>"; };
+		02C1FE7626B065D8006F439E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		02C1FE7826B06F84006F439E /* LocationDeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDeniedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +143,7 @@
 		02C1FE5926AE1990006F439E /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				02C1FE7626B065D8006F439E /* OnboardingView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -140,6 +151,7 @@
 		02C1FE5A26AE199D006F439E /* Denied */ = {
 			isa = PBXGroup;
 			children = (
+				02C1FE7826B06F84006F439E /* LocationDeniedView.swift */,
 			);
 			path = Denied;
 			sourceTree = "<group>";
@@ -170,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				02C1FE6A26AF081A006F439E /* BusinessDetailView.swift */,
+				02C1FE7026AF5FEB006F439E /* DirectionsView.swift */,
+				02C1FE7226AF607C006F439E /* BusinessTitleView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -178,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				02C1FE6E26AF2ECA006F439E /* BusinessMap.swift */,
+				02C1FE7426AF71DB006F439E /* DirectionsMap.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -251,10 +266,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02C1FE7526AF71DB006F439E /* DirectionsMap.swift in Sources */,
 				02C1FE3F26ADE5EE006F439E /* LaunchView.swift in Sources */,
 				02C1FE6B26AF081A006F439E /* BusinessDetailView.swift in Sources */,
+				02C1FE7126AF5FEB006F439E /* DirectionsView.swift in Sources */,
 				02C1FE6626AE34D9006F439E /* BusinessRow.swift in Sources */,
 				02C1FE5D26AE19CA006F439E /* HomeView.swift in Sources */,
+				02C1FE7926B06F84006F439E /* LocationDeniedView.swift in Sources */,
 				02C1FE3D26ADE5EE006F439E /* CitySightsApp.swift in Sources */,
 				02C1FE6226AE25FB006F439E /* BusinessSectionHeader.swift in Sources */,
 				02C1FE5326AE0947006F439E /* BusinessSearch.swift in Sources */,
@@ -263,6 +281,8 @@
 				02C1FE6F26AF2ECA006F439E /* BusinessMap.swift in Sources */,
 				02C1FE6426AE274A006F439E /* BusinessSection.swift in Sources */,
 				02C1FE4F26ADE79B006F439E /* ContentModel.swift in Sources */,
+				02C1FE7326AF607C006F439E /* BusinessTitleView.swift in Sources */,
+				02C1FE7726B065D8006F439E /* OnboardingView.swift in Sources */,
 				02C1FE5626AE13F7006F439E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

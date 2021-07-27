@@ -92,9 +92,10 @@ struct Location: Decodable {
     var state: String?
     var displayAddress: [String]?
     
-    enum codingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
+        
         case zipCode = "zip_code"
-        case displayAddress = "displayAddress"
+        case displayAddress = "display_address"
         
         case address1
         case address2
